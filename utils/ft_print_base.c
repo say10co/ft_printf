@@ -6,10 +6,10 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:46:24 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/22 23:06:43 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:38:29 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 char ft_find(int i, int uper)
 {

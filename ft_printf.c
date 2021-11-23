@@ -5,32 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 17:56:51 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 01:02:21 by adriouic         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 22:35:45 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/22 17:54:03 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:49:11 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include "ft_printf.h"
 #include <limits.h>
+#include "./includes/ft_printf.h"
 
 static int do_operation(const char *format, va_list args, int *res)
 {
 	int t;
+	//int i;
 
 	if (*format == 'p')
 		return (convert_to_pointer(va_arg(args, long long)));
@@ -48,13 +37,24 @@ static int do_operation(const char *format, va_list args, int *res)
 		ft_print_base(va_arg(args, int), 1, res);
 	if (*format == '%')
 	{
-		t = escape(format);
-		if (t != 0)
+		t = escape(format, res);
+		if (t > 0)
 			return (-t);
-		return (write(1, "%", 1));
+		else
+		{
+			ft_put_percent((-t + 1) / 2);
+			/*
+			i = (-t + 1) / 2;
+			while (i > 0)
+			{
+				write(1, "%", 1);
+				i--;
+			}
+			*/
+			return (t);
+		}
  	}
 	return (0);
-
 }
 int	ft_printf(const char *placeHolders, ...)
 {
@@ -77,7 +77,7 @@ int	ft_printf(const char *placeHolders, ...)
 			else
 			{
 				result += x;
-				i++;
+				i += 1;
 			}
 		}
 		else
@@ -85,14 +85,25 @@ int	ft_printf(const char *placeHolders, ...)
 		i++;
 	}
 	va_end(args);
-	return (result);
-}
+	return (result);}
 /*
+
 int main()
-{	
-	printf("%d\n", printf("%%%%%%%%%%%%d\n", 42));
-	printf("%d\n", ft_printf("%%%%%%%%%%%%d\n", 42));
+{
+   int x = 0;
+int y = 0;   
+	x = ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%\n", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+	y = printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+	
+	ft_printf("ftP %d P %d\n", x, y);
+	//printf(" %d\n", ft_printf("the '%%%%' is used to print a %% in printf"));
+	//printf(" %d\n", printf("the '%%%%' is used to print a %% in printf"));
+
+	//printf("%d\n", printf("%%%%%%%%%%%%d\n", 42));
+	//printf("%d\n", ft_printf("%%%%%%%%%%%%d\n", 42));
+	//
 
 	return (0);
 }
+
 */

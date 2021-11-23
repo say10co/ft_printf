@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 
-ft =  $(wildcard ./utils/ft_*.c) ./utils/conv_ptr.c ./libft/ft_calloc.c ./libft/ft_strjoin.c ./libft/ft_strlen.c 
+ft =  $(wildcard ./utils/ft_*.c) ./utils/conv_ptr.c ./libft/ft_calloc.c ./libft/ft_strjoin.c ./libft/ft_strlen.c ft_printf.c
 
 oft = ${ft:.c=.o}
 

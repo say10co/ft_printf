@@ -6,10 +6,10 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:13 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/22 22:41:24 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:39:10 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_putnbr(int n, int *nb)
 {

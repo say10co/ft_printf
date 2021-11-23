@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getLen.c                                        :+:      :+:    :+:   */
+/*   ft_put_percent.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 20:44:48 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 13:37:00 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/23 16:22:48 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/23 16:37:25 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-size_t ft_getLen(unsigned long num, unsigned long base)
+int ft_put_percent(int nbtimes)
 {
-	size_t	len;
-	
-	len = 0;
-	if (!num)
-		return (1);
-	while (num)
+	int i = 0;
+	while (i < nbtimes)
 	{
-		len++;
-		num /= base;
-	}
-	return (len);
+		write(1, "%d", 1);
+		i++;
+	}		
+	return (nbtimes);
 }

@@ -6,20 +6,22 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 01:02:04 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 01:02:08 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/23 16:02:47 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int ft_is_specifier(char c)
 {
-	char *spec;
+	char	*spec;
+	int		i;
 
+	i =  0;
 	spec = "cspiduxX%";
-	while (*spec)
+	while (spec[i])
 	{
-		if (*spec == c)
+		if (spec[i] == c)
 			return (1);
-		spec = spec + 1;
+		i++;
 	}
 	return (0);
 }

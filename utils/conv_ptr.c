@@ -6,11 +6,12 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 20:43:19 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 00:27:38 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:48:09 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 #include "../libft/libft.h"
+#include "../includes/ft_printf.h"
+
 static unsigned long mod(unsigned long a, unsigned long b)
 {
 	long result;

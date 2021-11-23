@@ -6,10 +6,10 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:08:48 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/22 17:40:02 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:39:43 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_putstr(char *s)
 {

@@ -6,11 +6,10 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 22:30:40 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/22 22:54:02 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/23 13:39:24 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_putnbrU(unsigned int n, int *nb)
 {

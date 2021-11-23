@@ -16,6 +16,7 @@ int		convert_to_pointer(unsigned long ptr);
 size_t	ft_getLen(unsigned long num, unsigned long base);
 char	*convert_to_hex(unsigned long ptr, int upper);
 int		ft_putnbrU(unsigned int n, int *nb);
-int		escape(const char *str);
+int		escape(const char *str, int *res);
 int		ft_is_specifier(char c);
+int		ft_put_percent(int nbtimes);
 #endif
