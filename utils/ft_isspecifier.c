@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prcent.c                                        :+:      :+:    :+:   */
+/*   ft_isspecifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 23:10:14 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 01:01:04 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/23 01:02:04 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/23 01:02:08 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
 
-int	escape(const char *str)
+int ft_is_specifier(char c)
 {
-	int i;
-	int escape;
+	char *spec;
 
-	escape = 1;
-	i = 0;
-	while (str[i] == '%')
+	spec = "cspiduxX%";
+	while (*spec)
 	{
-		escape = !escape;
-		i++;
+		if (*spec == c)
+			return (1);
+		spec = spec + 1;
 	}
-	if (!escape && ft_is_specifier(str[i]))
-		return (i);
 	return (0);
 }
