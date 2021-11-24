@@ -20,5 +20,8 @@ int		escape(const char *str, int *res, va_list args);
 int		ft_is_specifier(char c);
 int		ft_put_percent(int nbtimes);
 int		ft_custom_atoi(char *str);
-
+int		ft_precision(int prec, va_list args);
+void	ft_ftoa(float n, char* res, int afterpoint);
+int		ft_intToStr(int x, char *res, int d);
+void	ft_reverse(char* str, int len);
 #endif

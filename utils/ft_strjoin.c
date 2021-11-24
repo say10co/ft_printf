@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conv_ptr.c                                         :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/21 20:43:19 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/24 23:14:03 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/04 10:10:19 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/24 21:51:12 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-void	convert_to_pointer(unsigned long long ptr, int *nb_chars)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*radix;
-	char		*result;
-	size_t		len;
+	int		index;
+	int		total_len;
+	char	*new_str;
 
-	radix = "0123456789abcdef";
-	len = ft_getlen(ptr, 16);
-	result = (char *)(calloc(len, sizeof(char)));
-	if (!result)
-		return ;
-	ft_putstr("0x", nb_chars);
-	while (len > 0)
+	if (!s1 || !s2)
+		return (0);
+	total_len = ft_strlen(s1) + ft_strlen(s2);
+	index = 0;
+	new_str = (char *)malloc(sizeof(char) * total_len + 1);
+	if (!new_str)
+		return (0);
+	while (total_len--)
 	{
-		len--;
-		result[len] = radix[ptr % 16];
-		ptr /= 16;
+		if (*s1 != '\0')
+			new_str[index] = *s1;
+		else
+		{
+			s1 = s2;
+			new_str[index] = *s1;
+		}
+		s1++;
+		index++;
 	}
-	ft_putstr(result, nb_chars);
-	free(result);
+	new_str[index] = '\0';
+	return (new_str);
 }

@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_get_format.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 13:06:16 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/24 20:50:25 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/24 17:33:57 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/24 17:38:14 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/ft_printf.h"
 
-void	ft_putchar(char c, int *nb_chars)
+int ft_get_format(char *str)
 {
-	*nb_chars += write(1, &c, 1);
+	int i;
+
+	i = 0;
+	while (str[i] && str[i] == '-')
+		i++;
+	while (str[i] && str[i] == '0')
+		i++;
+	if (str[i] == '.')
+		i++;
+
+	return (0);
 }

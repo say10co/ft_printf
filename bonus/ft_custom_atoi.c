@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 18:29:42 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 18:43:32 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/24 18:43:34 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ int ft_custom_atoi(char *str)
 		i++;
 		return (ft_atoi(&str[i]));
 	}
-	return (0);
+	return (i);
 }
+/*
 int main()
 {
 	printf("%d\n", ft_custom_atoi("--0005d"));
 	printf("%0.5d", 42);
 	return (0);
 }	
+*/

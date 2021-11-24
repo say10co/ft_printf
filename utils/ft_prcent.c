@@ -6,30 +6,30 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 23:10:14 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 16:48:40 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/24 22:34:11 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
- 
 #include "../includes/ft_printf.h"
 
-int	escape(const char *str, int *res)
+void	ft_put_format(const char *str, int *res, int *pos)
 {
-	int i;
-	int escape;
+	int	i;
+	int	valid;
 
-	escape = 1;
+	valid = 1;
 	i = 0;
 	while (str[i] == '%')
 	{
-		escape = !escape;
+		valid = !valid;
 		i++;
 	}
-	if (escape && ft_is_specifier(str[i]))
+	if (valid && ft_is_specifier(str[i]))
 	{
 		*res += ft_put_percent(i / 2);
-		return (i - 1);
-	
+		*pos += i - 2;
+		return ;
 	}
 	*res += ((i + 1) / 2);
-	return (-i);
+	ft_put_percent((i + 1) / 2);
+	*pos += (i - 1);
 }

@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrU.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/22 22:30:40 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 13:39:24 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/06 15:18:34 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/24 21:49:20 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-int	ft_putnbrU(unsigned int n, int *nb)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char			t;
+	void	*mem;
 
-	if (n > 9)
-		ft_putnbrU(n / 10, nb);
-	t = (n % 10) + '0';
-	*nb += write(1, &t, 1);
-	return (*nb);
+	mem = malloc(count * size);
+	if (!mem)
+		return (0);
+	return (ft_memset(mem, 0, count * size));
 }

@@ -6,16 +6,16 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 01:02:04 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/23 16:02:47 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/24 21:24:03 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_is_specifier(char c)
+int	ft_is_specifier(char c)
 {
 	char	*spec;
 	int		i;
 
-	i =  0;
+	i = 0;
 	spec = "cspiduxX%";
 	while (spec[i])
 	{

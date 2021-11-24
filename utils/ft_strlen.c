@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 13:06:16 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/24 20:50:25 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/02 09:29:53 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/24 21:51:58 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-void	ft_putchar(char c, int *nb_chars)
+size_t	ft_strlen(const char *s)
 {
-	*nb_chars += write(1, &c, 1);
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

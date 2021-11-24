@@ -1,17 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 13:06:16 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/24 20:50:25 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/01 19:31:39 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/24 22:07:20 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../includes/ft_printf.h"
 
-void	ft_putchar(char c, int *nb_chars)
-{
-	*nb_chars += write(1, &c, 1);
+void	*ft_memset(void *b, int c, size_t len)
+{	
+	unsigned char	*str;
+
+	str = b;
+	while (len > 0)
+	{
+		*str = (unsigned char)c;
+		str++;
+		len--;
+	}
+	return (b);
 }

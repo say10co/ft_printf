@@ -1,17 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_putnbrU.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/19 13:06:16 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/24 20:50:25 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/22 22:30:40 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/24 21:38:26 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-void	ft_putchar(char c, int *nb_chars)
+void	ft_put_unsigned_nbr(unsigned int n, int *nb)
 {
-	*nb_chars += write(1, &c, 1);
+	char	t;
+
+	if (n > 9)
+		ft_put_unsigned_nbr(n / 10, nb);
+	t = (n % 10) + '0';
+	*nb += write(1, &t, 1);
 }
