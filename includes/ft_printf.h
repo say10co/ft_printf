@@ -21,5 +21,5 @@ int		ft_is_specifier(char c);
 int		ft_put_percent(int nbtimes);
 void	*ft_memset(void *b, int c, size_t len);
 int		ft_putspace(int nb_spaces);
-int 	ft_putzeroes(nb_zeroes);
+int 	ft_putzeroes(int nb_zeroes);
 #endif

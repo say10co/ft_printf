@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:13 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 10:45:26 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 11:19:14 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -57,7 +57,20 @@ void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 			flag = 0;
 		}
 		else
-			len = 11;
+		{
+			if (info->minus)
+			{
+				*nb += write(1, "-2147483648", 11);
+				i+= f(perc - 11);
+			}
+			else
+			{
+				i += f(perc - 11);
+				*nb += write(1, "-2147483648", 11);
+			}
+			*nb += i;
+			return ;
+		}
 	}
 	else
 		len = ft_getlen(n, 10);
