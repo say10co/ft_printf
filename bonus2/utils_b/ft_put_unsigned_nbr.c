@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 22:30:40 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 05:47:46 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 07:11:51 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -21,7 +21,7 @@ void	ft_put_unsigned(unsigned int n, int *nb)
 	*nb += write(1, &t, 1);
 }
 
-void ft_put_unsigned_nbr(unsigned int n, int *nbr, t_info *info)
+void ft_put_unsigned_nbr(unsigned int n, int *nbr, t_info *info, int (*f)())
 {
 
 	int perc;
@@ -36,11 +36,11 @@ void ft_put_unsigned_nbr(unsigned int n, int *nbr, t_info *info)
 		if (info->minus)
 		{
 			ft_put_unsigned(n, nbr);
-			i += ft_putspace(perc - len);
+			i += f(perc - len);
 		}
 		else
 		{
-			i += ft_putspace(perc - len);
+			i += f(perc - len);
 			ft_put_unsigned(n, nbr);
 		}
 		*nbr += i;

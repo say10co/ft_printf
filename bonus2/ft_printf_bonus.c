@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 06:28:27 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 09:10:14 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -23,23 +23,24 @@ typedef struct format_int
 static int	do_operation(const char *format, va_list args, int *res, int *pos)
 {
 	t_info *temp;
+	//int i;
 
 	temp = (t_info *)(malloc(sizeof(t_info)));
 	ft_set_struct(temp);
 	if (*format == 'p')
-		convert_to_pointer(va_arg(args, long long), res, temp);
+		convert_to_pointer(va_arg(args, long long), res, temp, NULL);
 	if (*format == 'c')
-		ft_putchar(va_arg(args, int), res, temp);
+		ft_putchar(va_arg(args, int), res, temp, NULL);
 	if (*format == 's')
-		ft_putstr(va_arg(args, char *), res, temp);
+		ft_putstr(va_arg(args, char *), res, temp, NULL);
 	if (*format == 'd' || *format == 'i')
-		ft_putnbr(va_arg(args, int), res, temp);
+		ft_putnbr(va_arg(args, int), res, temp, NULL);
 	if (*format == 'u')
-		ft_put_unsigned_nbr(va_arg(args, unsigned int), res, temp);
+		ft_put_unsigned_nbr(va_arg(args, unsigned int), res, temp, NULL);
 	if (*format == 'x')
-		ft_print_base(va_arg(args, unsigned int), 0, res, temp);
+		ft_print_base(va_arg(args, unsigned int),res, temp, NULL);
 	if (*format == 'X')
-		ft_print_base(va_arg(args, unsigned int), 1, res, temp);
+		ft_print_base(va_arg(args, unsigned int), res, temp, NULL);
 	free(temp);
 	temp = NULL;
 	if (*format == '%')
@@ -73,9 +74,8 @@ int	ft_printf(const char *placeHolders, ...)
 			//printf("<->format_specifier :%c\n<->percision : %d\n", f_info->format, f_info->percision);
 			ft_set_format(args, f_info, &result);
 		}
-		else if (placeHolders[i] == '%' && ft_is_specifier(placeHolders[i + 1]))
+		else if (placeHolders[i] == '%')
 			result += do_operation(&placeHolders[++i], args, &result, &i);
-	
 		else
 			result += write(1, &placeHolders[i], 1);
 		i++;
@@ -85,7 +85,7 @@ int	ft_printf(const char *placeHolders, ...)
 	va_end(args);
 	return (result);
 }
-
+/*
 int main(void)
 {
 	int d;
@@ -93,7 +93,8 @@ int main(void)
 
 	d = 42;
 	u = 1929394959;
-	ft_printf("%---17p and %4X\n", &d, 64);
-	printf("%---17p and %4X", &d, 64);
+	ft_printf("%       015d\n", 140732884);
+	printf("%   015d", 140732884);
 	return (0);
 }
+*/

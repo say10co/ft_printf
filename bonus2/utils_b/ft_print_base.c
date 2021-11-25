@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:46:24 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 06:27:03 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 07:43:28 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -32,12 +32,22 @@ int	ft_put_base(unsigned int nbr, int uper, int *res)
 	return (*res);
 }
 
-int	ft_print_base(unsigned int nbr, int uper, int	*res, t_info *info)
+int	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
 {
 	int perc;
 	int	len;
 	int	i;
-
+	int uper;
+	
+	uper = 1;
+	if (*res < 0)
+	{
+		if (*res == -1)
+			*res = 0;
+		else
+			*res = -*res;
+		uper = 0;
+	}
 	len = ft_getlen(nbr, 16);
 	i = 0;
 	if (info->percision)
@@ -46,11 +56,11 @@ int	ft_print_base(unsigned int nbr, int uper, int	*res, t_info *info)
 		if (info->minus)
 		{
 			ft_put_base(nbr,uper, res);
-			i += ft_putspace(perc - len);
+			i += f(perc - len);
 		}
 		else
 		{
-			i += ft_putspace(perc - len);
+			i += f(perc - len);
 			ft_put_base(nbr, uper, res);
 		}
 		*res += i;

@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 20:43:19 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 06:28:43 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 07:10:33 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -33,7 +33,7 @@ void	conver_pointer(unsigned long long ptr, int *nb_chars)
 	free(result);
 }
 
-void	convert_to_pointer(unsigned long long ptr, int *nb_chars, t_info *info)
+void	convert_to_pointer(unsigned long long ptr, int *nb_chars, t_info *info, int (*f)())
 {
 	int perc;
 	int	len;
@@ -47,11 +47,11 @@ void	convert_to_pointer(unsigned long long ptr, int *nb_chars, t_info *info)
 		if (info->minus)
 		{
 			conver_pointer(ptr, nb_chars);
-			i += ft_putspace(perc - len);
+			i += f(perc - len);
 		}
 		else
 		{
-			i += ft_putspace(perc - len);
+			i += f(perc - len);
 			conver_pointer(ptr, nb_chars);
 		}
 		*nb_chars += i;

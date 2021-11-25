@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 06:07:49 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 07:06:40 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ typedef struct format_int
 
 int		ft_printf(const char *placeHolders, ...);
 size_t	ft_strlen(const char *s);
-void	ft_putstr(char *s, int *nb_chars, t_info *info);
-int		ft_putchar(char c, int *nb_chars, t_info *info);
-void	ft_putnbr(int n, int *nb, t_info *info);
+void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)());
+int		ft_putchar(char c, int *nb_chars, t_info *info, int (*f)());
+void	ft_putnbr(int n, int *nb, t_info *info, int (*f)());
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-int		ft_print_base(unsigned int nbr, int uper, int *res, t_info *info);
-void	convert_to_pointer(unsigned long long ptr, int *nb_chars, t_info *info);
+int		ft_print_base(unsigned int nbr, int *res, t_info *info, int (*f)());
+void	convert_to_pointer(unsigned long long ptr, int *nb_chars, t_info *info, int (*f)());
 size_t	ft_getlen(unsigned long num, unsigned long base);
 char	*convert_to_hex(unsigned long ptr, int upper);
-void	ft_put_unsigned_nbr(unsigned int n, int *nbr, t_info *info);
+void	ft_put_unsigned_nbr(unsigned int n, int *nbr, t_info *info, int (*f)());
 void	ft_put_format(const char *str, int *res, int *pos);
 int		ft_is_specifier(char c);
 int		ft_put_percent(int nbtimes);

@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 05:10:07 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 09:09:58 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -36,23 +36,26 @@ int exception(const char *str, t_info *strct)
 	int except;
 	int	skiped;
 
-	except = 0;
+	except = 1;
 	i = 0;
 	while (str[i] == '%')
 		i++;
+	ft_put_percent((i + 1) / 2);
 	if ((i + 1) %  2 == 0)
 		return (0);
-	while (str[i] == ' ' || str[i] == '-')
+	while (str[i] == ' ' || str[i] == '-' || str[i] == '0')
 	{
 		if (str[i] == '-')
 		{
 			except = 1;
 			strct->minus = 1;
 		}
+		if (str[i] == '0')
+			strct->zero = 1;
 		i++;
 	}
 	if (!except && ft_is_specifier(str[i]))
-		return (-1);	
+		return (-1);
 	skiped = ft_get_percision((const char *)&str[i], &(strct->percision));
 	if (ft_is_specifier(str[i + skiped]))
 	{
@@ -64,3 +67,4 @@ int exception(const char *str, t_info *strct)
 	
 	return(-1);	
 }
+
