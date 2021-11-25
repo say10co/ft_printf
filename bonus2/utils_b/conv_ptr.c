@@ -6,12 +6,12 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 20:43:19 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/24 23:14:03 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 06:28:43 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-void	convert_to_pointer(unsigned long long ptr, int *nb_chars)
+void	conver_pointer(unsigned long long ptr, int *nb_chars)
 {
 	char		*radix;
 	char		*result;
@@ -22,13 +22,42 @@ void	convert_to_pointer(unsigned long long ptr, int *nb_chars)
 	result = (char *)(calloc(len, sizeof(char)));
 	if (!result)
 		return ;
-	ft_putstr("0x", nb_chars);
+	*nb_chars += ft_printstr("0x");
 	while (len > 0)
 	{
 		len--;
 		result[len] = radix[ptr % 16];
 		ptr /= 16;
 	}
-	ft_putstr(result, nb_chars);
+	*nb_chars += ft_printstr(result);
 	free(result);
+}
+
+void	convert_to_pointer(unsigned long long ptr, int *nb_chars, t_info *info)
+{
+	int perc;
+	int	len;
+	int	i;
+
+	len = ft_getlen(ptr, 16) + 2;
+	i = 0;
+	if (info->percision)
+	{
+		perc = info->percision ;
+		if (info->minus)
+		{
+			conver_pointer(ptr, nb_chars);
+			i += ft_putspace(perc - len);
+		}
+		else
+		{
+			i += ft_putspace(perc - len);
+			conver_pointer(ptr, nb_chars);
+		}
+		*nb_chars += i;
+		return ;
+	}
+	conver_pointer(ptr, nb_chars);
+	*nb_chars += i;
+	
 }
