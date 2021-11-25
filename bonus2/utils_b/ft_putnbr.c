@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:13 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 11:19:14 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 11:35:53 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -14,19 +14,10 @@
 void	ft_printnbr(int n, int *nb)
 {
 	char	t;
-
-	if (n < 0)
+	if (nb < 0)
 	{
-		if (n == -2147483648)
-		{
-			*nb += write(1, "-2147483648", 11);
-			return ;
-		}
-		else
-		{
-			n *= -1;
-			*nb += write(1, "-", 1);
-		}
+		n *= -1;
+		*nb += write(1, "-", 1);
 	}
 	if (n > 9)
 		ft_printnbr(n / 10, nb);
