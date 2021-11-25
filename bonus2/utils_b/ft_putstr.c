@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:08:48 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 07:12:41 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 10:23:15 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -28,10 +28,25 @@ void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)())
 {
 	int	i;
 	int prec;
-	
+
+	i = 0;	
 	if (!s)
 	{
-		*nb_chars += write(1, "(null)", 6);
+		if (info->percision)
+		{
+			prec = info->percision;
+			if (info->minus)
+			{
+				*nb_chars += write(1, "(null)", 6);
+				i += f(prec - 6);
+			}
+			else
+			{	
+				i += f(prec - 6);
+				*nb_chars += write(1, "(null)", 6);
+			}
+		}
+		*nb_chars += i;
 		return ;
 	}
 	if (info->percision)
