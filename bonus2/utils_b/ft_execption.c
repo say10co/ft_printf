@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 21:31:20 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/26 20:24:22 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -20,13 +20,19 @@ int	ft_get_percision(const char *str, t_info *format)
 	result = 0;
 	while (str[i])
 	{
-		if (str[i] >= 48 && str[i] <= 57)
+		if (ft_isdigit(str[i]))
 			result = result * 10 + (str[i] - '0');
 		else
 			break ;
 		i++;
 	}
-	format->percision = result;
+	if (!result)
+	{
+		if (str[i - 1] == '0' || !ft_isdigit(str[i]))
+			format->percision = -42;
+	}
+	else
+		format->percision = result;
 	return (i);
 }
 

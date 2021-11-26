@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 22:30:40 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 07:11:51 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/26 20:09:08 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -28,6 +28,8 @@ void ft_put_unsigned_nbr(unsigned int n, int *nbr, t_info *info, int (*f)())
 	int	len;
 	int	i;
 
+	if (info->percision == -42 && !n)
+		return ;
 	len = ft_getlen(n, 10);
 	i = 0;
 	if (info->percision)

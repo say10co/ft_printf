@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:46:24 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 07:43:28 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/26 21:00:42 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -32,21 +32,29 @@ int	ft_put_base(unsigned int nbr, int uper, int *res)
 	return (*res);
 }
 
+int deconfigure(int *res)
+{
+	if (*res < 0)
+	{
+		if (*res == -16)
+			*res = 0;
+		else
+			*res = -*res;
+		return (0);
+	}
+	return (1);
+}
+
 int	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
 {
 	int perc;
 	int	len;
 	int	i;
-	int uper;
 	
-	uper = 1;
-	if (*res < 0)
+	if (info->percision == -42 && !nbr)
 	{
-		if (*res == -1)
-			*res = 0;
-		else
-			*res = -*res;
-		uper = 0;
+		deconfigure(res);
+		return (0);
 	}
 	len = ft_getlen(nbr, 16);
 	i = 0;
@@ -55,18 +63,18 @@ int	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
 		perc = info->percision ;
 		if (info->minus)
 		{
-			ft_put_base(nbr,uper, res);
+			ft_put_base(nbr, deconfigure(res), res);
 			i += f(perc - len);
 		}
 		else
 		{
 			i += f(perc - len);
-			ft_put_base(nbr, uper, res);
+			ft_put_base(nbr, deconfigure(res), res);
 		}
 		*res += i;
 		return (0);
 	}
-	ft_put_base(nbr, uper, res);
-	*res += i;
+	ft_put_base(nbr, deconfigure(res), res);
+	//*res += i;
 	return (0);
 }

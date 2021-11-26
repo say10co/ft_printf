@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 23:02:11 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/26 19:55:23 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,9 @@ int		ft_get_percision(const char *str, t_info *format);
 int		ft_dot(const char *str, t_info *format);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
+void	ft_putnbr_b(int n,  int *nb, t_info *info, int (*f)());
+char	*ft_itoa(int nbr);
+int		ft_isdigit(int c);
+void	ft_putstr_normal(char *s, int *nb);
+void ft_putstr_b(char *to_print, int *res, t_info *info, int (*f)());
 #endif
