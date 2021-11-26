@@ -1,41 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 10:10:19 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/24 21:51:12 by adriouic         ###   ########.fr       */
+/*   Created: 2021/11/04 09:57:21 by adriouic          #+#    #+#             */
+/*   Updated: 2021/11/25 21:46:03 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		index;
-	int		total_len;
-	char	*new_str;
+	char			*substr;
+	unsigned int	index;
+	unsigned int	s_len;
 
-	if (!s1 || !s2)
+	if (!s)
 		return (0);
-	total_len = ft_strlen(s1) + ft_strlen(s2);
 	index = 0;
-	new_str = (char *)malloc(sizeof(char) * total_len + 1);
-	if (!new_str)
+	s_len = ft_strlen(s);
+	if (s_len < len)
+		len = s_len;
+	substr = (char *)malloc((len + 1) * sizeof(char));
+	if (!substr)
 		return (0);
-	while (total_len--)
+	while (index < len && start < s_len && s[index])
 	{
-		if (*s1 != '\0')
-			new_str[index] = *s1;
-		else
-		{
-			s1 = s2;
-			new_str[index] = *s1;
-		}
-		s1++;
+		substr[index] = s[start];
+		start++;
 		index++;
 	}
-	new_str[index] = '\0';
-	return (new_str);
+	substr[index] = '\0';
+	return (substr);
 }

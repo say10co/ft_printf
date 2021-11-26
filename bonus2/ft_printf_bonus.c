@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 10:37:48 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 22:42:21 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -93,8 +93,8 @@ int main(void)
 
 	d = 42;
 	u = 1929394959;
-	ft_printf("%20d\n", -42000);
-	printf("%20d\n", -42000);
+	ft_printf("%.15u\n", u);
+	printf("%.15u\n", u);
 	return (0);
 }
 */

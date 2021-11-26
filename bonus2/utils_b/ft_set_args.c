@@ -6,17 +6,46 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:14:14 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 10:26:48 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 23:08:51 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+int non(int nb)
+{
+	return (nb * 0);
+}	
+void ft_help(va_list args, t_info *info, int *res)
+{
+	char *s;
+	if (info->format == 's')
+	{
+		s = ft_substr(va_arg(args, char *), 0, info->percision);
+		if (!s)
+			s = ft_substr("(null)", 0, info->percision);
+		ft_putstr(s, res, info, non);
+		free(s);
+	}	
+	if (info->format == 'd' || info->format == 'i')
+		ft_putnbr(va_arg(args, int), res, info, ft_putzeroes);
+	if (info->format == 'u')
+		ft_put_unsigned_nbr(va_arg(args, unsigned int), res, info, ft_putzeroes);
+	if (info->format == 'X')
+		ft_print_base(va_arg(args, unsigned int),res, info, ft_putzeroes);
+	if (info->format == 'x')
+		ft_print_base(va_arg(args, unsigned int),res, info, ft_putzeroes);
 
-int	ft_set_format(va_list args, t_info *format, int *res)
+}	
+void	ft_set_format(va_list args, t_info *format, int *res)
 {
 	int	(*f)();
-
+	
 	f = &ft_putspace;
+	if (format->dot)
+	{
+		ft_help(args, format, res);
+		return ;
+	}
 	if (format->zero && !(format->minus)) // means atoi found zero
 		f = &ft_putzeroes;
 	if (format->format == 'c')
@@ -40,5 +69,5 @@ int	ft_set_format(va_list args, t_info *format, int *res)
 	if (format->format == 'p')
 		convert_to_pointer(va_arg(args, long long), res, format, f);
 		
-	return (0);
+	//return (0);
 }

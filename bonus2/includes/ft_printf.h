@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 07:06:40 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 23:02:11 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ typedef struct format_int
 	int	percision;
 	int	minus;
 	int zero;
+	int astra;
+	int	dot;
 
 }t_info;
 
@@ -46,7 +48,10 @@ int		exception(const char *sr, t_info *strct);
 int		ft_putspace(int nb_spaces);
 int 	ft_putzeroes(int nb_zeroes);
 void	ft_set_struct(t_info *strct);
-int		ft_set_format(va_list args, t_info *format, int *res);
+void	ft_set_format(va_list args, t_info *format, int *res);
 int 	ft_printstr(char *str);
-
+int		ft_get_percision(const char *str, t_info *format);
+int		ft_dot(const char *str, t_info *format);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *s1);
 #endif

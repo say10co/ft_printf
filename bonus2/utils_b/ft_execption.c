@@ -6,12 +6,12 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 09:09:58 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/25 21:31:20 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-int	ft_get_percision(const char *str, int *percision)
+int	ft_get_percision(const char *str, t_info *format)
 {
 	unsigned long		result;
 	int					i;
@@ -26,7 +26,7 @@ int	ft_get_percision(const char *str, int *percision)
 			break ;
 		i++;
 	}
-	*percision = result;
+	format->percision = result;
 	return (i);
 }
 
@@ -42,7 +42,7 @@ int exception(const char *str, t_info *strct)
 		i++;
 	ft_put_percent((i + 1) / 2);
 	if ((i + 1) %  2 == 0)
-		return (0);
+		return (-1);
 	while (str[i] == ' ' || str[i] == '-' || str[i] == '0')
 	{
 		if (str[i] == '-')
@@ -54,16 +54,20 @@ int exception(const char *str, t_info *strct)
 			strct->zero = 1;
 		i++;
 	}
+	if (str[i] == '.')
+	{
+		strct->dot = 1;
+		i++;
+		return (ft_dot(&str[i], strct) + i + 1);
+	}
 	if (!except && ft_is_specifier(str[i]))
 		return (-1);
-	skiped = ft_get_percision((const char *)&str[i], &(strct->percision));
+	skiped = ft_get_percision((const char *)&str[i], strct);
 	if (ft_is_specifier(str[i + skiped]))
 	{
 		strct->format  = str[i + skiped];
 		return (i + skiped + 1);
 	}
-	//else if (str[i + skiped] == '.' && str[i + skiped + 1] == 'f')
-	//	ft_put_float(ft_get_percision(str + skiped + 1));
 	
 	return(-1);	
 }
