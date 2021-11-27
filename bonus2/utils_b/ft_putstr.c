@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:08:48 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/26 20:02:33 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 03:55:14 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -23,13 +23,34 @@ int ft_printstr(char *str)
 	}
 	return (o);
 }
+int lead_spaces(char *s, t_info *info)
+{
+	int nb_spaces;
+	int i;
 
+	i = 0;
+	nb_spaces = (info->percision) - ft_strlen(s);
+	if (info->minus)
+	{
+		i += ft_putspace(nb_spaces);
+		i += ft_printstr(s);
+	}
+	else
+	{
+		i += ft_printstr(s);
+		i += ft_putspace(nb_spaces);
+	}
+	return (i);
+
+}
 void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)())
 {
 	int	i;
 	int prec;
 
 	i = 0;	
+	if (info->min_w)
+		*nb_chars += lead_spaces(s, info);
 	if (!s)
 	{
 		if (info->percision)

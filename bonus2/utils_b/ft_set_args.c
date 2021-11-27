@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:14:14 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/26 21:00:32 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 03:55:04 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int non(int nb)
 int *ft_configure(int *res)
 {
 	if (*res == 0)
-		*res = -16;
+		*res = -1337;
 	else
 		*res = -(*res);
 	return (res);
@@ -30,9 +30,16 @@ void ft_help(va_list args, t_info *info, int *res)
 	char *s;
 	if (info->format == 's')
 	{
-		s = ft_substr(va_arg(args, char *), 0, info->percision);
-		ft_putstr_b(s, res, info, non);
-		free(s);
+		if (!(info->min_w))
+		{
+			s = ft_substr(va_arg(args, char *), 0, info->percision);
+			ft_putstr_b(s, res, info, non);
+			free(s);
+		}
+		else
+		{
+			ft_putstr_b(va_arg(args, char *), res, info, ft_putspace);
+		}
 	}	
 	if (info->format == 'd' || info->format == 'i')
 		ft_putnbr_b(va_arg(args, int), res, info, ft_putzeroes);
@@ -67,9 +74,11 @@ void	ft_set_format(va_list args, t_info *format, int *res)
 	if (format->format == 'X')
 		ft_print_base(va_arg(args, unsigned int),res, format, f);
 	if (format->format == 'x')
-		ft_print_base(va_arg(args, unsigned int),ft_configure(res), format, f);
+	{
+		res = ft_configure(res);
+		ft_print_base(va_arg(args, unsigned int), res, format, f);
+	}
 	if (format->format == 'p')
 		convert_to_pointer(va_arg(args, long long), res, format, f);
 		
-	//return (0);
 }

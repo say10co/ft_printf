@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/26 19:55:23 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 03:45:00 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct format_int
 	int zero;
 	int astra;
 	int	dot;
+	int	min_w;
 
 }t_info;
 
@@ -58,5 +59,7 @@ void	ft_putnbr_b(int n,  int *nb, t_info *info, int (*f)());
 char	*ft_itoa(int nbr);
 int		ft_isdigit(int c);
 void	ft_putstr_normal(char *s, int *nb);
-void ft_putstr_b(char *to_print, int *res, t_info *info, int (*f)());
+void	ft_putstr_b(char *to_print, int *res, t_info *info, int (*f)());
+int		ft_atoi(const char *str);
+char	*ft_strjoin(char const *s1, char const *s2);
 #endif

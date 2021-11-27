@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 22:42:21 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 00:00:51 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -68,6 +68,7 @@ int	ft_printf(const char *placeHolders, ...)
 		ft_set_struct(f_info);
 		if (placeHolders[i] == '%')
 			skiped = exception(&placeHolders[i + 1], f_info);
+
 		if (placeHolders[i] == '%' && skiped != -1)
 		{
 			i += skiped;
@@ -75,7 +76,10 @@ int	ft_printf(const char *placeHolders, ...)
 			ft_set_format(args, f_info, &result);
 		}
 		else if (placeHolders[i] == '%')
+		{
+			write(1, "o", 1);
 			result += do_operation(&placeHolders[++i], args, &result, &i);
+		}
 		else
 			result += write(1, &placeHolders[i], 1);
 		i++;
@@ -90,7 +94,9 @@ int main(void)
 {
 	int d;
 	unsigned int u;
-
+	
+	ft_printf("%-10d", -10);
+	
 	d = 42;
 	u = 1929394959;
 	ft_printf("%.15u\n", u);

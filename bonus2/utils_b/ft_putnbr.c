@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:13 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/26 17:48:06 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 00:04:38 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -31,8 +31,7 @@ void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 	int	len;
 	int	i;
 	int flag; 
-
-
+	
 	perc = info->percision ;
 	flag = 1;
 	i = 0;
@@ -43,7 +42,8 @@ void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 			n *= -1;
 			len = ft_getlen(n, 10);
 			len++;
-			i += f(perc - len);
+			if (!(info->minus))
+				i += f(perc - len);
 			*nb += write(1, "-", 1);
 			flag = 0;
 		}
@@ -68,7 +68,7 @@ void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 	if (info->percision)
 	{
 		if (info->minus)
-		{
+		{	
 			ft_printnbr(n, nb);
 			i += f(perc - len);
 		}
