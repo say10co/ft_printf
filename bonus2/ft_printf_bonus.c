@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 00:00:51 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:16:54 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -68,16 +68,13 @@ int	ft_printf(const char *placeHolders, ...)
 		ft_set_struct(f_info);
 		if (placeHolders[i] == '%')
 			skiped = exception(&placeHolders[i + 1], f_info);
-
 		if (placeHolders[i] == '%' && skiped != -1)
 		{
 			i += skiped;
-			//printf("<->format_specifier :%c\n<->percision : %d\n", f_info->format, f_info->percision);
 			ft_set_format(args, f_info, &result);
 		}
 		else if (placeHolders[i] == '%')
 		{
-			write(1, "o", 1);
 			result += do_operation(&placeHolders[++i], args, &result, &i);
 		}
 		else

@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 02:49:38 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:16:52 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -50,12 +50,15 @@ int get_both(const char *str, t_info *info)
 		info->min_w = ft_atoi(&str[i + 1]);
 		i++;
 		return (ft_dot(&str[i], info) + i);
-		//i += ft_getlen(ft_atoi(&str[i + 1]), 10);
 	}
-	if (ft_is_specifier(str[i]))
+	if (ft_is_specifier(str[i]))	
 	{
-		info->format  = str[i];
-		return (i);
+		if (!i)
+		{
+			info->format  = str[i];
+			return (-2);
+		}
+		info->format = str[i];
 	}
 	if (!i)
 		return (-2);
@@ -67,15 +70,15 @@ int exception(const char *str, t_info *strct)
 {
 	int i;
 	int except;
-	//int	skiped;
+	int	skiped;
 
 	except = 1;
 	i = 0;
 	while (str[i] == '%')
 		i++;
-	//ft_put_percent((i + 1) / 2);
-	//if ((i + 1) %  2 == 0)
-	//	return (-1);
+	ft_put_percent((i + 1) / 2);
+	if ((i + 1) %  2 == 0)
+		return (-1);
 	while (str[i] == ' ' || str[i] == '-')
 	{
 		if (str[i] == '-')
@@ -87,8 +90,7 @@ int exception(const char *str, t_info *strct)
 			strct->zero = 1;
 		i++;
 	}
-	return(get_both(&str[i], strct) + i + 1);
-	/*
+	//return(get_both(&str[i], strct) + i + 1);	
 	if (str[i] == '.')
 	{
 		strct->dot = 1;
@@ -105,5 +107,4 @@ int exception(const char *str, t_info *strct)
 	}
 		
 	return(-1);	
-	*/
 }

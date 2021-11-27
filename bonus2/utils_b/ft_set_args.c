@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:14:14 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 03:55:04 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 16:16:48 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_set_format(va_list args, t_info *format, int *res)
 {
 	int	(*f)();
 	
-	f = &ft_putspace;
+	f = ft_putspace;
 	if (format->dot)
 	{
 		ft_help(args, format, res);
