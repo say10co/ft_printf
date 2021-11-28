@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 18:18:20 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 22:24:11 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ typedef struct format_int
 	int astra;
 	int	dot;
 	int	min_w;
+	int	hash;
+	int	space;
+	int	plus;
 
 }t_info;
 

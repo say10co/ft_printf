@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:13 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 20:26:26 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 22:38:51 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -35,6 +35,10 @@ void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 	perc = info->percision ;
 	flag = 1;
 	i = 0;
+	if (n >= 0 && info->space)
+		*nb += write(1, " ", 1);
+	if (n >= 0 && info->plus)
+		*nb += write(1, "+", 1);
 	if (n < 0)
 	{
 		if ( n !=  -2147483648)

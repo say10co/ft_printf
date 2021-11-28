@@ -6,10 +6,25 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:46:24 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/26 22:22:52 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 21:10:51 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
+
+int	hash(int i, int upper, int *res, int n)
+{
+	if (i && upper && n)
+	{
+		*res += 2;
+		return (write(1, "0X", 2));
+	}
+	else if (i && !upper && n)
+	{
+		*res += 2;
+		return (write(1, "0x", 2));
+	}
+	return (0);
+}
 
 char	ft_find(int i, int uper)
 {
@@ -56,6 +71,7 @@ int	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
 	if (info->percision == -42 && !nbr)
 		return (0);
 	len = ft_getlen(nbr, 16);
+	len += hash(info->hash, uper, res, nbr);
 	i = 0;
 	if (info->percision)
 	{

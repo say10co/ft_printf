@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 20:26:42 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 22:40:22 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -88,7 +88,7 @@ int	ft_printf(const char *placeHolders, ...)
 /*
 int main(void)
 {	
-	ft_printf("%04d\n", -14);
-	printf("%04d", -14);
+	ft_printf("%+d\n", 0);
+	printf("%+d", 0);
 	return (0);
 }*/

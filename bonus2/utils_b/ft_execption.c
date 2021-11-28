@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 19:46:06 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 22:39:25 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -102,7 +102,7 @@ int exception(const char *str, t_info *strct)
 	if ((i + 1) %  2 == 0)
 		return (-1);
 	ft_put_percent((i + 1) / 2);
-	while (str[i] == ' ' || str[i] == '-' || str[i] == '0')
+	while (str[i] == ' ' || str[i] == '-' || str[i] == '0' || str[i] == '#' || str[i] == '+')
 	{
 		if (str[i] == '-')
 		{
@@ -111,6 +111,21 @@ int exception(const char *str, t_info *strct)
 		}
 		if (str[i] == '0')
 			strct->zero = 1;
+		if (str[i] == '#')
+		{
+			except = 1;
+			strct->hash = 1;
+		}
+		if (str[i] == ' ')
+		{
+			except = 1;
+			strct->space = 1;
+		}
+		if (str[i] == '+')
+		{
+			except = 1;
+			strct->plus = 1;
+		}
 		i++;
 	}
 	if (!except && ft_is_specifier(str[i]))
