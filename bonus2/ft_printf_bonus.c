@@ -6,21 +6,11 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 22:57:09 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 00:15:49 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
-#include <limits.h>
-/*
-typedef struct format_int
-{
-	char format;
-	int	percision;
-	int	minus;
-	int zero;
 
-}t_info;
-*/
 static void	do_operation(const char *format, va_list args, int *res, int *pos)
 {
 	t_info	*temp;
@@ -47,13 +37,32 @@ static void	do_operation(const char *format, va_list args, int *res, int *pos)
 		ft_put_format(format, res, pos);
 }
 
+static int	check_ex(const char *phs, int *result, t_info *info, va_list args)
+{	
+	int	i;
+	int	skiped;
+
+	i = 0;
+	skiped = 0;
+	if (phs[i] == '%')
+		skiped = exception(&phs[i + 1], info);
+	else
+		return (-1);
+	if (skiped != -1)
+	{
+		ft_set_format(args, info, result);
+		return (skiped);
+	}
+	return (-1);
+}
+
 int	ft_printf(const char *placeHolders, ...)
 {
 	va_list	args;
 	t_info	*f_info;
 	int		i;
 	int		result;
-	int		skiped;
+	int		l;
 
 	i = 0;
 	result = 0;
@@ -62,20 +71,15 @@ int	ft_printf(const char *placeHolders, ...)
 	{
 		f_info = (t_info *)(malloc(sizeof(t_info)));
 		ft_set_struct(f_info);
-		if (placeHolders[i] == '%')
-			skiped = exception(&placeHolders[i + 1], f_info);
-		if (placeHolders[i] == '%' && skiped != -1)
-		{
-			i += skiped;
-			ft_set_format(args, f_info, &result);
-		}
+		l = check_ex(&placeHolders[i], &result, f_info, args);
+		if (l != -1)
+			i += l;
 		else if (placeHolders[i] == '%')
 			do_operation(&placeHolders[++i], args, &result, &i);
 		else
 			result += write(1, &placeHolders[i], 1);
 		i++;
 		free(f_info);
-		f_info = NULL;
 	}
 	va_end(args);
 	return (result);
