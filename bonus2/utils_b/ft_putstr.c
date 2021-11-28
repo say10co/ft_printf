@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:08:48 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 15:08:47 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 17:39:53 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -23,6 +23,7 @@ int ft_printstr(char *str)
 	}
 	return (o);
 }
+
 int lead_spaces(char *s, t_info *info)
 {
 	int nb_spaces;
@@ -41,8 +42,8 @@ int lead_spaces(char *s, t_info *info)
 		i += ft_putspace(nb_spaces);
 	}
 	return (i);
-
 }
+
 void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)())
 {
 	int	i;
@@ -66,8 +67,10 @@ void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)())
 				i += f(prec - 6);
 				*nb_chars += write(1, "(null)", 6);
 			}
+			*nb_chars += i;
+			return ;
 		}
-		*nb_chars += i;
+		*nb_chars += write(1, "(null)", 6);
 		return ;
 	}
 	if (info->percision)

@@ -6,10 +6,11 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 03:26:03 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 20:26:42 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
+#include <limits.h>
 /*
 typedef struct format_int
 {
@@ -34,11 +35,11 @@ static int	do_operation(const char *format, va_list args, int *res, int *pos)
 	if (*format == 's')
 		ft_putstr(va_arg(args, char *), res, temp, NULL);
 	if (*format == 'd' || *format == 'i')
-		ft_putnbr(va_arg(args, int), res, temp, NULL);
+		ft_putnbr(va_arg(args, int), res, temp, ft_putspace);
 	if (*format == 'u')
 		ft_put_unsigned_nbr(va_arg(args, unsigned int), res, temp, NULL);
 	if (*format == 'x')
-		ft_print_base(va_arg(args, unsigned int),res, temp, NULL);
+		ft_print_base(va_arg(args, unsigned int),ft_configure(res), temp, NULL);
 	if (*format == 'X')
 		ft_print_base(va_arg(args, unsigned int), res, temp, NULL);
 	free(temp);
@@ -87,8 +88,7 @@ int	ft_printf(const char *placeHolders, ...)
 /*
 int main(void)
 {	
-	printf(" %01d\n ", 0);
-	ft_printf(" %01d ", 0);
+	ft_printf("%04d\n", -14);
+	printf("%04d", -14);
 	return (0);
-}
-*/
+}*/

@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 03:25:14 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 19:46:06 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -43,8 +43,8 @@ int get_both(const char *str, t_info *info)
 	i = 0;
 	if (ft_isdigit(str[i]))
 	{
-		while(str[i] == '0')
-			i++;
+	//	while(str[i] == '0')
+	//		i++;
 		info->min_w = ft_atoi(&str[i]);
 		i += ft_getlen(info->min_w, 10);
 		if (str[i] != '.')
@@ -95,14 +95,14 @@ int exception(const char *str, t_info *strct)
 	int except;
 	//int	skiped;
 
-	except = 1;
+	except = 0;
 	i = 0;
 	while (str[i] == '%')
 		i++;
-	ft_put_percent((i + 1) / 2);
 	if ((i + 1) %  2 == 0)
 		return (-1);
-	while (str[i] == ' ' || str[i] == '-')
+	ft_put_percent((i + 1) / 2);
+	while (str[i] == ' ' || str[i] == '-' || str[i] == '0')
 	{
 		if (str[i] == '-')
 		{
@@ -113,6 +113,8 @@ int exception(const char *str, t_info *strct)
 			strct->zero = 1;
 		i++;
 	}
+	if (!except && ft_is_specifier(str[i]))
+		return (-1);
 	return(get_both(&str[i], strct) + i + 1);	
 	
 	
