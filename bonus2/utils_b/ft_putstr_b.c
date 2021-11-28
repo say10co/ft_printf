@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:24:02 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 15:18:44 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 20:53:06 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -29,7 +29,7 @@ void ft_putstr_b(char *to_print, int *res, t_info *info, int (*f)())
 	if (info->min_w)
 	{
 		len =  ft_strlen(to_print);
-		diff = len - info->percision;
+		diff = info->percision - len;
 		if (info->percision > len)
 		{
 			zeros = (char *)ft_memset(malloc(diff), '0', diff);

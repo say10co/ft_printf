@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 16:16:54 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 03:26:03 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -74,9 +74,7 @@ int	ft_printf(const char *placeHolders, ...)
 			ft_set_format(args, f_info, &result);
 		}
 		else if (placeHolders[i] == '%')
-		{
 			result += do_operation(&placeHolders[++i], args, &result, &i);
-		}
 		else
 			result += write(1, &placeHolders[i], 1);
 		i++;
@@ -88,16 +86,9 @@ int	ft_printf(const char *placeHolders, ...)
 }
 /*
 int main(void)
-{
-	int d;
-	unsigned int u;
-	
-	ft_printf("%-10d", -10);
-	
-	d = 42;
-	u = 1929394959;
-	ft_printf("%.15u\n", u);
-	printf("%.15u\n", u);
+{	
+	printf(" %01d\n ", 0);
+	ft_printf(" %01d ", 0);
 	return (0);
 }
 */

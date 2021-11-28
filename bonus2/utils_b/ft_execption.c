@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 16:16:52 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 03:25:14 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -35,6 +35,7 @@ int	ft_get_percision(const char *str, t_info *format)
 		format->percision = result;
 	return (i);
 }
+
 int get_both(const char *str, t_info *info)
 {
 	int i;
@@ -42,21 +43,42 @@ int get_both(const char *str, t_info *info)
 	i = 0;
 	if (ft_isdigit(str[i]))
 	{
-		i += ft_get_percision(&str[i], info);
+		while(str[i] == '0')
+			i++;
+		info->min_w = ft_atoi(&str[i]);
+		i += ft_getlen(info->min_w, 10);
+		if (str[i] != '.')
+		{
+			info->percision = info->min_w;
+			info->min_w = 0;
+		}
 	}
 	if (str[i] == '.')
 	{
 		info->dot = 1;
-		info->min_w = ft_atoi(&str[i + 1]);
+		info->percision= ft_atoi(&str[i + 1]);
 		i++;
-		return (ft_dot(&str[i], info) + i);
+		if (!(info->percision))
+		{
+			info->percision = -42;
+			if (str[i] == '0')
+			{
+				info->format = str[i + 1];
+				return (i + 1);
+			}
+			info->format = str[i];
+			return (i);
+		}
+		i += ft_getlen(info->percision, 10);
+		info->format = str[i];
+		return (i);
 	}
 	if (ft_is_specifier(str[i]))	
 	{
 		if (!i)
 		{
 			info->format  = str[i];
-			return (-2);
+			return (0);
 		}
 		info->format = str[i];
 	}
@@ -66,11 +88,12 @@ int get_both(const char *str, t_info *info)
 
 
 }
+
 int exception(const char *str, t_info *strct)
 {
 	int i;
 	int except;
-	int	skiped;
+	//int	skiped;
 
 	except = 1;
 	i = 0;
@@ -90,7 +113,10 @@ int exception(const char *str, t_info *strct)
 			strct->zero = 1;
 		i++;
 	}
-	//return(get_both(&str[i], strct) + i + 1);	
+	return(get_both(&str[i], strct) + i + 1);	
+	
+	
+	/*
 	if (str[i] == '.')
 	{
 		strct->dot = 1;
@@ -107,4 +133,5 @@ int exception(const char *str, t_info *strct)
 	}
 		
 	return(-1);	
+	*/
 }

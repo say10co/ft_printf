@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:07:57 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 03:38:02 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/27 19:10:09 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_dot(const char *str, t_info *info)
 	
 	p = 0;
 	if (!info->format)
-	{
+	{	
 		p = ft_get_percision(str,info);
 		info->format = str[p];
 	}
