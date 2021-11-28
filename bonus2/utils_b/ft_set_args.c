@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:14:14 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/27 20:03:19 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/28 22:59:34 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int non(int nb)
 	return (nb * 0);
 }
 
-int *ft_configure(int *res)
+int *configure(int *res)
 {
 	if (*res == 0)
 		*res = -1337;
@@ -48,7 +48,7 @@ void ft_help(va_list args, t_info *info, int *res)
 	if (info->format == 'X')
 		ft_print_base(va_arg(args, unsigned int),res, info, ft_putzeroes);
 	if (info->format == 'x')
-		ft_print_base(va_arg(args, unsigned int), ft_configure(res), info, ft_putzeroes);
+		ft_print_base(va_arg(args, unsigned int), configure(res), info, ft_putzeroes);
 
 }	
 void	ft_set_format(va_list args, t_info *format, int *res)
@@ -75,7 +75,7 @@ void	ft_set_format(va_list args, t_info *format, int *res)
 		ft_print_base(va_arg(args, unsigned int),res, format, f);
 	if (format->format == 'x')
 	{
-		res = ft_configure(res);
+		res = configure(res);
 		ft_print_base(va_arg(args, unsigned int), res, format, f);
 	}
 	if (format->format == 'p')
