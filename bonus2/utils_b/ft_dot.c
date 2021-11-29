@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:07:57 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 00:23:41 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 03:35:42 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,19 @@ int	ft_dot(const char *str, t_info *info)
 		info->format = str[p];
 	}
 	return (p);
+}
+
+int	hash(int i, int upper, int *res, int n)
+{
+	if (i && upper && n)
+	{
+		*res += 2;
+		return (write(1, "0X", 2));
+	}
+	else if (i && !upper && n)
+	{
+		*res += 2;
+		return (write(1, "0x", 2));
+	}
+	return (0);
 }

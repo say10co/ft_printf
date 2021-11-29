@@ -6,25 +6,10 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 16:46:24 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 00:31:43 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 04:31:45 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
-
-int	hash(int i, int upper, int *res, int n)
-{
-	if (i && upper && n)
-	{
-		*res += 2;
-		return (write(1, "0X", 2));
-	}
-	else if (i && !upper && n)
-	{
-		*res += 2;
-		return (write(1, "0x", 2));
-	}
-	return (0);
-}
 
 char	ft_find(int i, int uper)
 {
@@ -59,8 +44,28 @@ int	deconfigure(int *res)
 	}
 	return (1);
 }
+/*
+int	count_len(int nbr, int *res, int uper,  t_info *info)
+{
+	int	len;
 
-int	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
+	len = ft_getlen(nbr, 16);
+	len += hash(info->hash, uper, res, nbr);
+	return (len);
+}
+*/
+int	init_v(int *uper, int *res, int nbr, t_info *info)
+{
+	int	len;
+	
+	len = 0;	
+	*uper = deconfigure(res);
+	len = ft_getlen(nbr, 16);
+	len += hash(info->hash, *uper, res, nbr);
+	return (len);
+}
+
+void	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
 {
 	int	perc;
 	int	len;
@@ -68,10 +73,12 @@ int	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
 	int	uper;
 
 	uper = deconfigure(res);
+	//init_v(&uper, res, &i, nbr);
 	if (info->percision == -42 && !nbr)
-		return (0);
+		return ;
 	len = ft_getlen(nbr, 16);
 	len += hash(info->hash, uper, res, nbr);
+	//len = init_v(&uper, res, nbr, info);
 	i = 0;
 	if (info->percision)
 	{
@@ -87,8 +94,9 @@ int	ft_print_base(unsigned int nbr, int	*res, t_info *info, int (*f)())
 			ft_put_base(nbr, uper, res);
 		}
 		*res += i;
-		return (0);
+		//return (0);
 	}
-	ft_put_base(nbr, uper, res);
-	return (0);
+	else
+		ft_put_base(nbr, uper, res);
+	//return (0);
 }

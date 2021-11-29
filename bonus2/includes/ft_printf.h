@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 01:47:59 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 04:01:59 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)());
 int		ft_putchar(char c, int *nb_chars, t_info *info, int (*f)());
 void	ft_putnbr(int n, int *nb, t_info *info, int (*f)());
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-int		ft_print_base(unsigned int nbr, int *res, t_info *info, int (*f)());
+void	ft_print_base(unsigned int nbr, int *res, t_info *info, int (*f)());
 void	to_p(unsigned long long ptr, int *nb_chars, t_info *info, int (*f)());
 size_t	ft_getlen(unsigned long num, unsigned long base);
 char	*convert_to_hex(unsigned long ptr, int upper);
@@ -68,4 +68,5 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int		*configure(int *res);
 int		deconfigure(int *res);
 int		get_perc(const char *str, t_info *info, int i);
+int		hash(int i, int upper, int *res, int n);
 #endif
