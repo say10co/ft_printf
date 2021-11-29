@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 01:08:54 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 01:47:59 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ int		ft_atoi(const char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		*configure(int *res);
 int		deconfigure(int *res);
+int		get_perc(const char *str, t_info *info, int i);
 #endif
