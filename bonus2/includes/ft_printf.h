@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:23:55 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 22:57:32 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 01:08:54 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int		ft_putchar(char c, int *nb_chars, t_info *info, int (*f)());
 void	ft_putnbr(int n, int *nb, t_info *info, int (*f)());
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 int		ft_print_base(unsigned int nbr, int *res, t_info *info, int (*f)());
-void	convert_to_pointer(unsigned long long ptr, int *nb_chars, t_info *info, int (*f)());
+void	to_p(unsigned long long ptr, int *nb_chars, t_info *info, int (*f)());
 size_t	ft_getlen(unsigned long num, unsigned long base);
 char	*convert_to_hex(unsigned long ptr, int upper);
-void	ft_put_unsigned_nbr(unsigned int n, int *nbr, t_info *info, int (*f)());
+void	ft_put_unsigned(unsigned int n, int *nbr, t_info *info, int (*f)());
 void	ft_put_format(const char *str, int *res, int *pos);
 int		ft_is_specifier(char c);
 int		ft_put_percent(int nbtimes);

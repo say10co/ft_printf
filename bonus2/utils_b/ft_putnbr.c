@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:13 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 22:38:51 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 00:38:49 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -14,6 +14,7 @@
 void	ft_printnbr(int n, int *nb)
 {
 	char	t;
+
 	if (nb < 0)
 	{
 		n *= -1;
@@ -27,11 +28,11 @@ void	ft_printnbr(int n, int *nb)
 
 void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 {
-	int perc;
+	int	perc;
 	int	len;
 	int	i;
-	int flag; 
-	
+	int	flag;
+
 	perc = info->percision ;
 	flag = 1;
 	i = 0;
@@ -41,16 +42,13 @@ void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 		*nb += write(1, "+", 1);
 	if (n < 0)
 	{
-		if ( n !=  -2147483648)
+		if (n != -2147483648)
 		{
 			n *= -1;
 			len = ft_getlen(n, 10);
 			len++;
-
 			if (!(info->minus) && !(info->zero))
-			{
 				i += ft_putspace(perc - len);
-			}
 			*nb += write(1, "-", 1);
 			flag = 0;
 		}
@@ -59,7 +57,7 @@ void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 			if (info->minus)
 			{
 				*nb += write(1, "-2147483648", 11);
-				i+= f(perc - 11);
+				i += f(perc - 11);
 			}
 			else
 			{

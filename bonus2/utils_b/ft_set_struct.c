@@ -6,13 +6,13 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:40:34 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 22:39:52 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 01:05:51 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void ft_set_struct(t_info *strct)
+void	ft_set_struct(t_info *strct)
 {
 	strct->format = 0;
 	strct->percision = 0;

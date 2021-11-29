@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 01:58:46 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/25 09:46:21 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 00:32:33 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ int	ft_putspace(int nb_spaces)
 	return (nb_spaces);
 }
 
-int ft_putzeroes(int nb_zeroes)
+int	ft_putzeroes(int nb_zeroes)
 {
 	int	nb;
+
 	if (nb_zeroes <= 0)
 		return (0);
 	nb = nb_zeroes;

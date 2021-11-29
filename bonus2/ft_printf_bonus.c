@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 00:15:49 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 01:16:22 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -18,7 +18,7 @@ static void	do_operation(const char *format, va_list args, int *res, int *pos)
 	temp = (t_info *)(malloc(sizeof(t_info)));
 	ft_set_struct(temp);
 	if (*format == 'p')
-		convert_to_pointer(va_arg(args, long long), res, temp, NULL);
+		to_p(va_arg(args, long long), res, temp, NULL);
 	if (*format == 'c')
 		ft_putchar(va_arg(args, int), res, temp, NULL);
 	if (*format == 's')
@@ -26,7 +26,7 @@ static void	do_operation(const char *format, va_list args, int *res, int *pos)
 	if (*format == 'd' || *format == 'i')
 		ft_putnbr(va_arg(args, int), res, temp, ft_putspace);
 	if (*format == 'u')
-		ft_put_unsigned_nbr(va_arg(args, unsigned int), res, temp, NULL);
+		ft_put_unsigned(va_arg(args, unsigned int), res, temp, NULL);
 	if (*format == 'x')
 		ft_print_base(va_arg(args, unsigned int), configure(res), temp, NULL);
 	if (*format == 'X')

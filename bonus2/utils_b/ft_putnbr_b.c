@@ -6,15 +6,15 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 17:07:02 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 02:33:20 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 00:43:16 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-
 int	ft_putstr_normal(char *s, int *nb)
 {
 	int	i;
+
 	(void)nb;
 	if (!s)
 		return (0);
@@ -24,12 +24,12 @@ int	ft_putstr_normal(char *s, int *nb)
 	return (i);
 }
 
-void lead_zero(char *to_print, int *nb,  t_info *info, int (*f)())
+void	lead_zero(char *to_print, int *nb, t_info *info, int (*f)())
 {
-	size_t len;
+	size_t	len;
 	int		i;
-	int 	sh;
-	int 	q;
+	int		sh;
+	int		q;
 
 	i = 0;
 	q = 0;
@@ -66,14 +66,12 @@ void lead_zero(char *to_print, int *nb,  t_info *info, int (*f)())
 		i += f(info->percision - len);
 		i += ft_putstr_normal(to_print, nb);
 		*nb += i;
-
 	}
-
 }
 
-void	ft_putnbr_b(int n,  int *nb, t_info *info, int (*f)())
+void	ft_putnbr_b(int n, int *nb, t_info *info, int (*f)())
 {
-	char *to_print;
+	char	*to_print;
 
 	if (info->percision == -42 && !n)
 	{

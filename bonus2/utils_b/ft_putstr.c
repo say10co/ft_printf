@@ -6,12 +6,12 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 13:08:48 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/28 17:39:53 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 01:07:36 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
 
-int ft_printstr(char *str)
+int	ft_printstr(char *str)
 {
 	int	o;
 
@@ -24,10 +24,10 @@ int ft_printstr(char *str)
 	return (o);
 }
 
-int lead_spaces(char *s, t_info *info)
+int	lead_spaces(char *s, t_info *info)
 {
-	int nb_spaces;
-	int i;
+	int	nb_spaces;
+	int	i;
 
 	i = 0;
 	nb_spaces = (info->percision) - ft_strlen(s);
@@ -47,9 +47,9 @@ int lead_spaces(char *s, t_info *info)
 void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)())
 {
 	int	i;
-	int prec;
+	int	prec;
 
-	i = 0;	
+	i = 0;
 	if (info->min_w)
 		*nb_chars += lead_spaces(s, info);
 	if (!s)
@@ -87,7 +87,7 @@ void	ft_putstr(char *s, int *nb_chars, t_info *info, int (*f)())
 			i += ft_printstr(s);
 		}
 		*nb_chars += i;
-	   	return ;
+		return ;
 	}
 	i = ft_printstr(s);
 	*nb_chars += i;
