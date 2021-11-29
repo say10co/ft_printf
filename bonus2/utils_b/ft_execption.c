@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 02:19:51 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 03:27:37 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -54,10 +54,11 @@ int	ft_isflag(char c)
 
 	i = 0;
 	flags = "0 -#+";
-	while (flags[i++])
+	while (flags[i])
 	{
 		if (c == flags[i])
 			return (1);
+		i++;
 	}
 	return (0);
 }
@@ -78,25 +79,28 @@ int	handle_percent(const char *str)
 int	exception(const char *str, t_info *strct)
 {
 	int	i;
+	int	count;
 
 	i = handle_percent(str);
 	if (i < 0)
 		return (-1);
-	while (ft_isflag(str[i]))
+	count = i;
+	while (ft_isflag(str[i++]))
 	{
-		if (str[i] == '-')
+		if (str[i - 1] == '-')
 			strct->minus = 1;
-		if (str[i] == '0')
+		else if (str[i + 1] == '0')
 			strct->zero = 1;
-		if (str[i] == '#')
+		else if (str[i - 1] == '#')
 			strct->hash = 1;
-		if (str[i] == ' ')
+		else if (str[i - 1] == ' ')
 			strct->space = 1;
-		if (str[i] == '+')
+		else if (str[i - 1] == '+')
 			strct->plus = 1;
-		i++;
+		else
+			count++;
 	}
-	if ((int)ft_strlen(str) == i && ft_is_specifier(str[i]))
+	if (count == i - 1 && ft_is_specifier(str[i - 1]))
 		return (-1);
-	return (get_both(&str[i], strct) + i + 1);
+	return (get_both(&str[i - 1], strct) + (i - 1) + 1);
 }
