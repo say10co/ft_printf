@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:27:20 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 19:53:14 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:44:40 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "./includes/ft_printf.h"
@@ -41,6 +41,7 @@ static int	check_ex(const char *phs, int *result, t_info *info, va_list args)
 {	
 	int	i;
 	int	skiped;
+
 	i = 0;
 	skiped = 0;
 	if (phs[i] == '%')
@@ -86,7 +87,7 @@ int	ft_printf(const char *placeHolders, ...)
 /*
 int main(void)
 {	
-	ft_printf(" %-2d \n", -1);
-	printf(" %-2d ",-1);
+	printf(" %d\n", ft_printf("%03d", 9));
+	printf(" %d\n", printf("%03d", 9));
 	return (0);
 }*/

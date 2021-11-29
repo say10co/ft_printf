@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 19:48:13 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 22:50:14 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:52:10 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -24,22 +24,6 @@ void	ft_printnbr(int n, int *nb)
 		ft_printnbr(n / 10, nb);
 	t = (n % 10) + '0';
 	*nb += write(1, &t, 1);
-}
-
-int	getflaf(int i)
-{
-	if (i >= 0)
-		return (0);
-	return (1);
-}
-
-int	put_space_plus(int n, int *nb, t_info *info)
-{
-	if (n >= 0 && info->space)
-		*nb += write(1, " ", 1);
-	if (n >= 0 && info->plus)
-		*nb += write(1, "+", 1);
-	return (info->percision);
 }
 
 void	put_minint(t_info *info, int *nb, int (*f)())
@@ -62,65 +46,61 @@ void	put_minint(t_info *info, int *nb, int (*f)())
 	*nb += i;
 }
 
-int	ft_put_negative(int *n, int *nb, t_info *info, int	*len)
+int	ft_put_negative(int *n, int *nb, t_info *info)
 {
-	int perc;
+	int	perc;
 	int	i;
 
 	i = 0;
 	perc = info->percision;
 	*n *= -1;
-	*len += 1;
+	info->len += 1;
 	if (!(info->minus) && !(info->zero))
-		i += ft_putspace(perc - *len);
+		i += ft_putspace(perc - info->len);
 	*nb += write(1, "-", 1);
+	info->flag = 0;
+	return (i);
+}
+
+int	handle_pecision(int n, int *nb, int (*f)(), t_info *info)
+{
+	int	i;
+
+	i = 0;
+	if (info->minus)
+	{	
+		ft_printnbr(n, nb);
+		i += f(info->percision - info->len);
+	}
+	else
+	{
+		if (info->flag || (info->zero))
+			i += f(info->percision - info->len);
+		ft_printnbr(n, nb);
+	}
 	return (i);
 }
 
 void	ft_putnbr(int n, int *nb, t_info *info, int (*f)())
 {
 	int	perc;
-	int	len;
 	int	i;
-	int	flag;
 
-	flag = 1;
 	i = 0;
 	perc = put_space_plus(n, nb, info);
 	if (n < 0)
 	{
-		len = ft_getlen(-n, 10);
+		info->len = ft_getlen(-n, 10);
 		if (n != -2147483648)
-		{
-			i = ft_put_negative(&n, nb, info, &len);
-			/*
-			n *= -1;
-			len = ft_getlen(n, 10);
-			len++;
-			if (!(info->minus) && !(info->zero))
-				i += ft_putspace(perc - len);
-			*nb += write(1, "-", 1);*/
-			flag = 0;
-		}
+			i = ft_put_negative(&n, nb, info);
 		else
 			return (put_minint(info, nb, f));
 	}
 	else
-		len = ft_getlen(n, 10);
+		info->len = ft_getlen(n, 10);
 	if (info->percision)
 	{
-		if (info->minus)
-		{	
-			ft_printnbr(n, nb);
-			i += f(perc - len);
-		}
-		else
-		{
-			if (flag || (info->zero))
-				i += f(perc - len);
-			ft_printnbr(n, nb);
-		}
-		*nb += i;
+		*nb += i + handle_pecision(n, nb, f, info);
 		return ;
 	}
 	ft_printnbr(n, nb);

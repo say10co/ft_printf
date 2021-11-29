@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 20:07:57 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 03:35:42 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:51:25 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,13 @@ int	hash(int i, int upper, int *res, int n)
 		return (write(1, "0x", 2));
 	}
 	return (0);
+}
+
+int	put_space_plus(int n, int *nb, t_info *info)
+{
+	if (n >= 0 && info->space)
+		*nb += write(1, " ", 1);
+	if (n >= 0 && info->plus)
+		*nb += write(1, "+", 1);
+	return (info->percision);
 }

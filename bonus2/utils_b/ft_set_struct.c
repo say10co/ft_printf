@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 02:40:34 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 01:05:51 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 23:50:02 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void	ft_set_struct(t_info *strct)
 	strct->hash = 0;
 	strct->plus = 0;
 	strct->space = 0;
+	strct->flag = 1;
+	strct->len = 0;
 }
