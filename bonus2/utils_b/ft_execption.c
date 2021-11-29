@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 00:46:58 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 03:27:37 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 17:59:55 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -89,7 +89,7 @@ int	exception(const char *str, t_info *strct)
 	{
 		if (str[i - 1] == '-')
 			strct->minus = 1;
-		else if (str[i + 1] == '0')
+		else if (str[i - 1] == '0')
 			strct->zero = 1;
 		else if (str[i - 1] == '#')
 			strct->hash = 1;

@@ -6,7 +6,7 @@
 /*   By: adriouic <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 17:07:02 by adriouic          #+#    #+#             */
-/*   Updated: 2021/11/29 00:43:16 by adriouic         ###   ########.fr       */
+/*   Updated: 2021/11/29 18:33:11 by adriouic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/ft_printf.h"
@@ -24,11 +24,38 @@ int	ft_putstr_normal(char *s, int *nb)
 	return (i);
 }
 
+void	width_percision(t_info *info, char *to_print, int len, int	*nb)
+{
+	int	sh;
+	int	i;
+
+	i = 0;
+	if ((int)len <= info->min_w || info->min_w == 0)
+	{
+		sh = len;
+		if (info->percision > (int)len)
+			sh = info->percision;
+		i += ft_putspace(info->min_w - sh);
+		i += ft_putzeroes(info->percision - len);
+		i += ft_putstr_normal(to_print, nb);
+		*nb += i;
+	}
+	else
+	{
+		sh = len;
+		if (info->percision > (int)len)
+			sh = info->percision;
+		i += ft_putspace(info->min_w - sh);
+		i += ft_putzeroes(info->percision - len);
+		i += ft_putstr_normal(to_print, nb);
+		*nb += i;
+	}
+}
+
 void	lead_zero(char *to_print, int *nb, t_info *info, int (*f)())
 {
 	size_t	len;
 	int		i;
-	int		sh;
 	int		q;
 
 	i = 0;
@@ -47,26 +74,8 @@ void	lead_zero(char *to_print, int *nb, t_info *info, int (*f)())
 		i += ft_putspace(info->min_w - i + q);
 		*nb += i;
 	}
-	else if ((int)len <= info->min_w || info->min_w == 0)
-	{
-		sh = len;
-		if (info->percision > (int)len)
-			sh = info->percision;
-		i += ft_putspace(info->min_w - sh);
-		i += f(info->percision - len);
-		i += ft_putstr_normal(to_print, nb);
-		*nb += i;
-	}
 	else
-	{
-		sh = len;
-		if (info->percision > (int)len)
-			sh = info->percision;
-		i += ft_putspace(info->min_w - sh);
-		i += f(info->percision - len);
-		i += ft_putstr_normal(to_print, nb);
-		*nb += i;
-	}
+		width_percision(info, to_print, len, nb);
 }
 
 void	ft_putnbr_b(int n, int *nb, t_info *info, int (*f)())
